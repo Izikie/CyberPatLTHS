@@ -15,12 +15,14 @@ fileTypes=(
 	"txt" "docx" "pdf" "doc" "ppt" "pptx" "xls" "ps"
 )
 
-fileCount=0
+
 echo "Scanning..."
+fileCount=0
 for file in "${fileTypes[@]}"; do
 	foundFiles=$(sudo find /home -name "*.$file" -type f)
+
 	if [ -n "$foundFiles" ]; then
-		echo "$foundFiles" >>media.log
+		echo "$foundFiles" >> "media.log"
 		fileCount=$((fileCount + 1))
 	fi
 done
