@@ -17,5 +17,3 @@ sudo pam-auth-update --package --force
 #/etc/security/faillock.conf
 sudo sed -i "/unlock_time = /c\  unlock_time = 1800" /etc/security/faillock.conf
 sudo sed -i "/deny = /c\  deny = 5" /etc/security/faillock.conf
-
-
