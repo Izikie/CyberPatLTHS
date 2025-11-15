@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "================================================"
 echo "        Select Database to Compare"
 echo "================================================"
@@ -10,7 +11,9 @@ echo "         5. Focal All"
 echo "         6. Custom"
 A=true
 echo "=============================================================" >>Package_Differences
+
 dpkg-query -W -f='${binary:Package}\n' >PackageList
+
 read -p "" input
 case $input in
 1) Package="BaseRef" ;;
@@ -20,6 +23,7 @@ case $input in
 5) Package="FAllRef" ;;
 5) Custom ;;
 esac
+
 read -p "Filter out Packages not on system(type y or n): " filter
 Custom() {
     read -p "Please input Reference File Name: "$custom
@@ -41,5 +45,6 @@ if [ $A = true ]; then
         echo <temp >>Package Differences
     fi
 fi
+
 rm PackageList
 rm temp

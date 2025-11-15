@@ -4,7 +4,7 @@
 SecureSSH() {
     # Backup the SSH configuration
     sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
-    echo "SSH config backed up to: /etc/ssh/sshd_config.backup"
+    echo "[!] SSH config backed up to: /etc/ssh/sshd_config.backup"
 
     # Modify SSH configuration to secure settings
     sudo sed -i 's/^#*LoginGraceTime .*/LoginGraceTime 60/' /etc/ssh/sshd_config
@@ -19,7 +19,7 @@ SecureSSH() {
     # Restart SSH service
     sudo systemctl restart sshd
 
-    echo "SSH has been secured."
+    echo "[!] SSH has been secured."
 }
 
 if command -v sshd &>/dev/null; then
@@ -36,7 +36,7 @@ if command -v sshd &>/dev/null; then
         ;;
     esac
 else
-    echo "SSH is not installed."
+    echo "[!] SSH is not installed."
 
     read -r -p "Do you want to install and secure it? (y/n) " yn
 
@@ -46,7 +46,7 @@ else
         sudo apt-get update
         sudo apt-get install openssh-server -y
 
-        echo "SSH has been installed."
+        echo "[!] SSH has been installed."
         SecureSSH
         ;;
     n) exit ;;

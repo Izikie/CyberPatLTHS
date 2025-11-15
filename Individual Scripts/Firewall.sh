@@ -2,19 +2,17 @@
 
 # Firewall
 
-#for allowing ports
-
 if ! dpkg -l | grep -q 'ufw'; then
-    echo "ufw was not found...installing"
+    echo "[!] Installing UFW"
     sudo apt install ufw -yq
 fi
 
 if sudo ufw status | grep -q 'inactive'; then
-    echo "ufw is inactive...enabling"
+    echo "[!] Enabling UFW"
     sudo ufw enable
 fi
 
-echo "turning on logging"
+echo "[!] Turning On Logging"
 sudo ufw logging on
 
 # sudo ufw allow `echo $@ | sed 's/ /,/g'`
@@ -23,7 +21,7 @@ sudo ufw logging on
 
 #echo "use sudo ufw allow <port> to allow a port, i'll add this later"
 
-echo "updating sysctl config"
+echo "[!] Updating Sysctl Config"
 
 if grep -q '#net.ipv4.conf.default.rp_filter.*=.*1' /etc/sysctl.conf; then
     sudo sed -i '/net.ipv4.conf.default.rp_filter.*=.*1/s/^#//g' /etc/sysctl.conf

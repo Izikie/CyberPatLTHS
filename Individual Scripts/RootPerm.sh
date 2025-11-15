@@ -2,7 +2,7 @@
 
 #disable root
 sudo passwd -l root
-echo "root account disabled"
+echo "Root Account Disabled"
 
 #check for NOPASSWD or !authenticate
 if grep -q 'NOPASSWD\|!authenticate' /etc/sudoers; then

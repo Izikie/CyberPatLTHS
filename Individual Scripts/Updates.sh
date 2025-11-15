@@ -3,6 +3,7 @@
 
 updateType=("focal" "focal-updates" "focal-security" "focal-backports")
 debType=("deb" "deb-src")
+
 for ((i = 0; i < ${#updateType[@]}; i++)); do
     if grep -iq "deb http://us.archive.ubuntu.com/ubuntu/ ${updateType[i]}" /etc/apt/sources.list; then
         sudo sed -i "/deb http:\/\/us.archive.ubuntu.com\/ubuntu\/ ${updateType[i]}/c\deb http:\/\/archive.ubuntu.com\/ubuntu\/ ${updateType[i]} main restricted universe" /etc/apt/sources.list
